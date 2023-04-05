@@ -14,5 +14,6 @@ Kevin Gao
 ## Project Description:
 
 ```
-The project of interest is an improvement upon an 'Eliza' program in the Python language. In this project our team has decided to work in an Kanban variation of AGILE methodology.
+The project of interest is an improvement upon an 'Eliza' program in the Python language. 
+In this project our team has decided to work in an Kanban variation of AGILE methodology.
 ```
