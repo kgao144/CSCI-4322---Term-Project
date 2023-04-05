@@ -2,7 +2,7 @@
 
 ## Final Project for Modern Software Development Spring 2023
 
-###Team members:
+### Team members:
 ```
 Grady Cliche
 Hayden Grubb
