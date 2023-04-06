@@ -1,3 +1,5 @@
+import tkinter
+
 import eliza
 import tkinter as tk
 from tkinter import ttk
@@ -46,6 +48,7 @@ def submit():
     text_box.insert("end-1c",input_txt+'\n')
     text_box.insert("end-1c", 'Eliza: ', 'ElizaNameTag')
     text_box.insert("end-1c", response+'\n')
+    text_box.see(tkinter.END)
     text_box.config(state='disabled')
     input_box.delete(0, 'end')
 
@@ -54,9 +57,11 @@ def change_theme():
     if root.tk.call("ttk::style", "theme", "use") == "azure-dark":
         # Set light theme
         root.tk.call("set_theme", "light")
+        text_box.config(bg="#FFFFFF")
     else:
         # Set dark theme
         root.tk.call("set_theme", "dark")
+        text_box.config(bg="#A2A2A2")
 
 def on_press(key):
     if key == keyboard.Key.enter:
@@ -73,8 +78,9 @@ button2 = ttk.Button(toolbar_frame, text="Change theme!", command=change_theme)
 button2.grid(row = 0, column= 1)
 
 
-text_box = tk.Text(output_frame, relief='groove', height=30, width = 80, borderwidth=2, pady=5, padx=5)
+text_box = tk.Text(output_frame, relief='groove', height=30, width = 80, borderwidth=2, pady=5, padx=5, bg='#A2A2A2')
 text_box.grid(row = 1, column = 0, sticky='ne')
+
 text_box.insert("end-1c",'Eliza: ','ElizaNameTag')
 text_box.insert("end-1c",eliza.initial()+'\n')
 text_box.tag_config('ElizaNameTag', foreground="cyan")
