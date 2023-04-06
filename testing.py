@@ -2,17 +2,26 @@ import eliza
 import tkinter
 from tkinter import ttk
 
-import sv_ttk
 eliza = eliza.Eliza()
 eliza.load('doctor.txt')
 
-print(eliza.initial())
+style = ttk.Style()
+style.configure('Custom.TEntry', borderwidth=0, relief='flat',
+                background='white', foreground='black',
+                padding=(10, 5),
+                bordercolor='gray',
+                focusthickness=2,
+                focuscolor='#0078d7',
+                borderradius=10)
 
 root = tkinter.Tk()
 root.title("Eliza the Assitant")
 root.geometry('1200x800')
 
 
+# Set the initial theme
+root.tk.call("source", "azure.tcl")
+root.tk.call("set_theme", "light")
 def submit():
     text_box.config(state='normal')
     input_txt=input_box.get()
@@ -26,23 +35,34 @@ def submit():
     text_box.config(state='disabled')
     input_box.delete(0, 'end')
 
-button = ttk.Button(root, text="Click me!", command=submit)
+def change_theme():
+    # NOTE: The theme's real name is azure-<mode>
+    if root.tk.call("ttk::style", "theme", "use") == "azure-dark":
+        # Set light theme
+        root.tk.call("set_theme", "light")
+    else:
+        # Set dark theme
+        root.tk.call("set_theme", "dark")
+
+
+button = ttk.Button(root, text="Submit", command=submit)
 button.grid(row = 0, column = 0)
 
+button2 = ttk.Button(root, text="Change theme!", command=change_theme)
+button2.grid(row = 0, column= 1, pady=5, padx=5)
 
-text_box = tkinter.Text(root, relief='groove', height=50, width = 80, borderwidth=1)
-text_box.grid(row = 1, column = 0)
+text_box = tkinter.Text(root, relief='groove', height=30, width = 80, borderwidth=1)
+text_box.grid(row = 1, column = 0, pady=5, padx=5)
 text_box.insert("end-1c",'Eliza: ','ElizaNameTag')
 text_box.insert("end-1c",eliza.initial()+'\n')
 text_box.tag_config('ElizaNameTag', foreground="cyan")
 text_box.tag_config('YouNameTag', foreground="green")
 text_box.config(state= 'disabled')
 
-input_box = tkinter.Entry(root, width=200,borderwidth=1,font=(60))
+input_box = ttk.Entry(root, width=20,font=(60), style='Custom.TEntry')
 input_box.grid(row=1,column=2)
 
-# This is where the magic happens
-sv_ttk.set_theme('dark')
+
 
 
 root.mainloop()
