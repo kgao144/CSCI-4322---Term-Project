@@ -1,4 +1,4 @@
-initial: Hey lil man.
+initial: How do you do.  Please tell me your problem.
 final: Goodbye.  Thank you for talking to me.
 quit: bye
 quit: goodbye
