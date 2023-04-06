@@ -1,5 +1,5 @@
 import tkinter
-
+import datetime
 import eliza
 import tkinter as tk
 from tkinter import ttk
@@ -8,14 +8,12 @@ from pynput import keyboard
 eliza = eliza.Eliza()
 eliza.load('doctor.txt')
 
-
-
 root = tk.Tk()
 root.title("Eliza the Assitant")
 root.geometry('630x830')
 
 toolbar_frame = tk.Frame(root, width=630, height=200)
-toolbar_frame.grid(row=0,column=0, sticky='ne')
+toolbar_frame.grid(row=0,column=0, sticky='ne',pady=5)
 
 output_frame = tk.Frame(root, width=630, height=600)
 output_frame.grid(row=1,column=0,pady=5,padx=5)
@@ -44,9 +42,11 @@ def submit():
     if input_txt == '':
         return
     response = eliza.respond(input_txt)
-    text_box.insert("end-1c",'You: ','YouNameTag')
+    now = datetime.datetime.now()
+    text_box.insert("end-1c",now.strftime("%I:%M%p |")+' You: ','YouNameTag')
     text_box.insert("end-1c",input_txt+'\n')
-    text_box.insert("end-1c", 'Eliza: ', 'ElizaNameTag')
+    now = datetime.datetime.now()
+    text_box.insert("end-1c",now.strftime('%I:%M%p |')+' Eliza: ', 'ElizaNameTag')
     text_box.insert("end-1c", response+'\n')
     text_box.see(tkinter.END)
     text_box.config(state='disabled')
@@ -81,9 +81,10 @@ button2.grid(row = 0, column= 1)
 text_box = tk.Text(output_frame, relief='groove', height=30, width = 80, borderwidth=2, pady=5, padx=5, bg='#A2A2A2')
 text_box.grid(row = 1, column = 0, sticky='ne')
 
-text_box.insert("end-1c",'Eliza: ','ElizaNameTag')
+now = datetime.datetime.now()
+text_box.insert("end-1c",now.strftime('%I:%M%p |')+' Eliza: ','ElizaNameTag')
 text_box.insert("end-1c",eliza.initial()+'\n')
-text_box.tag_config('ElizaNameTag', foreground="cyan")
+text_box.tag_config('ElizaNameTag', foreground="black")
 text_box.tag_config('YouNameTag', foreground="green")
 text_box.config(state= 'disabled')
 
