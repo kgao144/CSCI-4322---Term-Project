@@ -5,6 +5,12 @@ from tkinter import ttk
 eliza = eliza.Eliza()
 eliza.load('doctor.txt')
 
+
+
+root = tkinter.Tk()
+root.title("Eliza the Assitant")
+root.geometry('1200x800')
+
 style = ttk.Style()
 style.configure('Custom.TEntry', borderwidth=0, relief='flat',
                 background='white', foreground='black',
@@ -14,14 +20,9 @@ style.configure('Custom.TEntry', borderwidth=0, relief='flat',
                 focuscolor='#0078d7',
                 borderradius=10)
 
-root = tkinter.Tk()
-root.title("Eliza the Assitant")
-root.geometry('1200x800')
-
-
 # Set the initial theme
 root.tk.call("source", "azure.tcl")
-root.tk.call("set_theme", "light")
+root.tk.call("set_theme", "dark")
 def submit():
     text_box.config(state='normal')
     input_txt=input_box.get()
@@ -66,12 +67,3 @@ input_box.grid(row=1,column=2)
 
 
 root.mainloop()
-'''
-while True:
-    said = input('> ')
-    response = eliza.respond(said)
-    if response is None:
-        break
-    print(response)
-print(eliza.final())
-'''
