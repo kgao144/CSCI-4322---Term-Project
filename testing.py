@@ -1,6 +1,7 @@
 import eliza
 import tkinter
 from tkinter import ttk
+from pynput import keyboard
 
 eliza = eliza.Eliza()
 eliza.load('doctor.txt')
@@ -45,6 +46,13 @@ def change_theme():
         # Set dark theme
         root.tk.call("set_theme", "dark")
 
+def on_press(key):
+    if key == keyboard.Key.enter:
+        submit()
+    
+listener = keyboard.Listener(
+    on_press=on_press)
+listener.start()
 
 button = ttk.Button(root, text="Submit", command=submit)
 button.grid(row = 0, column = 0)
