@@ -2,7 +2,8 @@ import tkinter
 import datetime
 import eliza
 import tkinter as tk
-from tkinter import *
+import customtkinter as ctk #pip install customtkinter
+
 from tkinter import ttk
 from pynput import keyboard #pip install pynput
 
@@ -71,7 +72,7 @@ listener.start()
 
 
 # close window function
-def close():
+def closeWindow():
     root.quit()
 
 # clear input text function
