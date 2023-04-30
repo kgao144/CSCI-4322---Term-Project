@@ -3,6 +3,7 @@ final: Goodbye.  Thank you for talking to me.
 quit: bye
 quit: goodbye
 quit: quit
+context: so
 pre: dont don't
 pre: cant can't
 pre: wont won't
@@ -31,11 +32,14 @@ post: i'm you are
 synon: belief feel think believe wish
 synon: family mother mom father dad sister brother wife children child
 synon: desire want need
-synon: sad unhappy depressed sick
+synon: sad unhappy sick
 synon: happy elated glad better
 synon: cannot can't
 synon: everyone everybody nobody noone
 synon: be am is are was
+synon: suicidal suicide die dead
+synon: depressed depression
+synon: kill killed
 key: xnone
   decomp: *
     reasmb: I'm not sure I understand you fully.
@@ -44,9 +48,33 @@ key: xnone
     reasmb: Do you feel strongly about discussing such things ?
 key: sorry
   decomp: *
-    reasmb: Please don't apologise.
+    reasmb: Please don't apologize.
     reasmb: Apologies are not necessary.
     reasmb: I've told you that apologies are not required.
+key: context 999
+  decomp: *
+    reasmb: chat context
+key: die 777
+  decomp:*
+    reasmb: You should Call 988 for the suicide and crisis lifeline. Someone will speak with you regarding your problem.
+    reasmb: Speak with a friend or family member regarding your thoughts.
+    reasmb: I suggest that you seek professional help with this issue if possible.
+    reasmb: It would be best for you to Call 988 for the suicide and crisis lifeline. If my previous answers have been unhelpful, I will not be able to further assist you.
+    reasmb: test01
+key: suicide 777
+  decomp:*
+    reasmb: You should Call 988 for the suicide and crisis lifeline. Someone will speak with you regarding your problem.
+    reasmb: Speak with a friend or family member regarding your thoughts.
+    reasmb: I suggest that you seek professional help with this issue if possible.
+    reasmb: It would be best for you to Call 988 for the suicide and crisis lifeline. If my previous answers have been unhelpful, I will not be able to further assist you.
+    reasmb: test01
+key: suicidal
+  decomp:*
+    reasmb: You should Call 988 for the suicide and crisis lifeline. Someone will speak with you regarding your problem.
+    reasmb: Speak with a friend or family member regarding your thoughts.
+    reasmb: I suggest that you seek professional help with this issue if possible.
+    reasmb: It would be best for you to Call 988 for the suicide and crisis lifeline. If my previous answers have been unhelpful, I will not be able to further assist you.
+    reasmb: test01
 key: apologise
   decomp: *
     reasmb: goto sorry
@@ -66,7 +94,7 @@ key: remember 5
     reasmb: You mentioned (2) ?
 key: if 3
   decomp: * if *
-    reasmb: Do you think its likely that (2) ?
+    reasmb: Do you think it's likely that (2) ?
     reasmb: Do you wish that (2) ?
     reasmb: What do you know about (2) ?
     reasmb: Really, if (2) ?
@@ -171,6 +199,9 @@ key: was 2
     reasmb: Perhaps I was (2) .
     reasmb: What if I had been (2) ?
 key: i
+  decomp: * i * @kill *
+    reasmb: violence is not the answer
+    reasmb: test02
   decomp: * i @desire *
     reasmb: What would it mean to you if you got (3) ?
     reasmb: Why do you want (3) ?
@@ -178,6 +209,13 @@ key: i
     reasmb: What if you never got (3) ?
     reasmb: What would getting (3) mean to you ?
     reasmb: What does wanting (3) have to do with this discussion ?
+  
+  decomp: * i * @depressed *
+    reasmb: dep01
+    reasmb: dep02
+    reasmb: test01
+
+
   decomp: * i am * @sad *
     reasmb: I am sorry to hear that you are (3) .
     reasmb: Do you think that coming here will help you not to be (3) ?
@@ -188,6 +226,7 @@ key: i
     reasmb: Has your treatment made you (3) ?
     reasmb: What makes you (3) just now ?
     reasmb: Can you explan why you are suddenly (3) ?
+
   decomp: * i was *
     reasmb: goto was
   decomp: * i @belief * i *
@@ -207,10 +246,10 @@ key: i
     reasmb: Perhaps you could (3) now.
     reasmb: Do you really want to be able to (3) ?
   decomp: * i don't *
-    reasmb: Don't you really (2) ?
     reasmb: Why don't you (2) ?
-    reasmb: Do you wish to be able to (2) ?
     reasmb: Does that trouble you ?
+    reasmb: Don't you really (2) ?
+    reasmb: Do you wish to be able to (2) ?
   decomp: * do i feel *
     reasmb: Tell me more about such feelings.
     reasmb: Do you often feel (2) ?
@@ -226,6 +265,7 @@ key: i
     reasmb: Can you elaborate on that ?
     reasmb: Do you say (1) for some special reason ?
     reasmb: That's quite interesting.
+
 key: you
   decomp: * you remind me of *
     reasmb: goto alike
@@ -249,10 +289,9 @@ key: you
     reasmb: What are your feelings now ?
 key: yes
   decomp: *
-    reasmb: You seem to be quite positive.
-    reasmb: You are sure.
-    reasmb: I see.
     reasmb: I understand.
+    reasmb: I see.
+    reasmb: Are you sure?
 key: no
   decomp: *
     reasmb: Are you saying no just to be negative?
@@ -261,7 +300,7 @@ key: no
     reasmb: Why 'no' ?
 key: my 2
   decomp: $ * my *
-    reasmb: Lets discuss further why your (2) .
+    reasmb: Let's discuss further why your (2) .
     reasmb: Earlier you said your (2) .
     reasmb: But your (2) .
     reasmb: Does that have anything to do with the fact that your (2) ?
@@ -286,6 +325,9 @@ key: can
     reasmb: Do you want to be able to (2) ?
     reasmb: Perhaps you don't want to (2) .
     reasmb: goto what
+key: so 999
+  decomp: * what *
+    reasmb: testy test
 key: what
   decomp: *
     reasmb: Why do you ask ?
@@ -306,7 +348,7 @@ key: because
 key: why
   decomp: * why don't you *
     reasmb: Do you believe I don't (2) ?
-    reasmb: Perhaps I will (2) in good time.
+    reasmb: Perhaps I will (2), in good time.
     reasmb: Should you (2) yourself ?
     reasmb: You want me to (2) ?
     reasmb: goto what
@@ -347,14 +389,13 @@ key: always 1
 key: alike 10
   decomp: *
     reasmb: In what way ?
-    reasmb: What resemblence do you see ?
+    reasmb: What resemblance do you see ?
     reasmb: What does that similarity suggest to you ?
     reasmb: What other connections do you see ?
-    reasmb: What do you suppose that resemblence means ?
+    reasmb: What do you suppose that resemblance means ?
     reasmb: What is the connection, do you suppose ?
-    reasmb: Could here really be some connection ?
+    reasmb: Could there really be some connection ?
     reasmb: How ?
 key: like 10
   decomp: * @be * like *
     reasmb: goto alike
-   
