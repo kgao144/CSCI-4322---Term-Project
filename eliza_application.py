@@ -118,7 +118,7 @@ button2 = ttk.Button(toolbar_frame, text="Change theme!", command=change_theme)
 button2.pack(pady=5, padx=25)
 
 #Creates the text box so the user can read the chat
-text_box = tk.Text(output_frame, relief='groove', height=30, width = 80, borderwidth=2, pady=5, padx=5, bg='#A2A2A2')
+text_box = tk.Text(output_frame, relief='groove', height=30, borderwidth=2, pady=5, padx=5, bg='#A2A2A2')
 text_box.grid(row = 1, column = 0, sticky='ne')
 
 #Text box beginning content parameters
@@ -130,7 +130,7 @@ text_box.tag_config('YouNameTag', foreground="green")
 text_box.config(state= 'disabled')
 
 # create input box
-input_box = ttk.Entry(input_frame, width=50,font=(40), style='Custom.TEntry')
-input_box.grid(row=0,column=1, pady=10, padx = 10)
+input_box = ttk.Entry(input_frame,font=(40), width=40, style='Custom.TEntry')
+input_box.grid(row=0,column=1, pady=10, padx = 10, sticky='nsew')
 
 root.mainloop()
